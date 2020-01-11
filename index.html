@@ -46,7 +46,7 @@
   });
 
   function calc() {
-    var transport = new Thrift.Transport("http://localhost:9090");
+    var transport = new Thrift.Transport("http://localhost:9090/calculate");
     var protocol  = new Thrift.Protocol(transport);
     var client    = new CalculatorClient(protocol);
 

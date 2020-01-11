@@ -376,6 +376,7 @@ exports.createWebServer = function(options) {
           response.writeHead(200);
           response.end(buf);
         } catch (err) {
+          console.log(err);
           response.writeHead(500);
           response.end();
         }
@@ -385,6 +386,8 @@ exports.createWebServer = function(options) {
         svc.processor.process(input, output);
         transportWithData.commitPosition();
       } catch (err) {
+        console.log(err);
+
         if (err instanceof InputBufferUnderrunError) {
           transportWithData.rollbackPosition();
         } else {

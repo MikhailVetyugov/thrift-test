@@ -5,7 +5,7 @@ var SharedStruct = require("./gen-nodejs/shared_types").SharedStruct;
 
 var data = {};
 
-var server = thrift.createServer(Calculator, {
+var handler = {
   ping: function(result) {
     console.log("ping()");
     result(null);
@@ -59,6 +59,27 @@ var server = thrift.createServer(Calculator, {
   zip: function() {
     console.log("zip()");
   }
-});
+};
 
-server.listen(9090);
+// TCP (for node-client)
+//var server = thrift.createServer(Calculator, handler);
+//server.listen(9090);
+
+// HTTP (for browser-client)
+var options = {
+  transport: thrift.TXHRTransport,
+  protocol: thrift.TJSONProtocol,
+  processor: Calculator,
+  handler
+};
+var webServer = thrift.createWebServer({
+  files: '/Users/mikhailvetyugov/Projects/thrift-test',
+  services: {
+    '/ping': { ...options },
+    '/add': { ...options },
+    '/calculate': { ...options },
+    '/getStruct': { ...options },
+    '/zip': { ...options },
+  }
+});
+webServer.listen(9090);

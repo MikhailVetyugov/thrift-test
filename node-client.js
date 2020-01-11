@@ -18,7 +18,6 @@ connection.on('error', function(err) {
 // Create a Calculator client with the connection
 var client = thrift.createClient(Calculator, connection);
 
-
 client.ping(function(err, response) {
   console.log('ping()');
 });
