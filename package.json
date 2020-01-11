@@ -1,0 +1,17 @@
+{
+  "name": "thrift-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "server": "node node-server.js",
+    "client": "node node-client.js"
+  },
+  "dependencies": {
+    "browser-or-node": "^1.2.1",
+    "isomorphic-ws": "^4.0.1",
+    "q": "^1.5.1",
+    "thrift": "0.13.0",
+    "ws": "^7.2.1"
+  }
+}
